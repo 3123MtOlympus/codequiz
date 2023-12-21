@@ -1,4 +1,9 @@
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
+
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
+
     var myQuestions = [
         {
             question: "What does JavaScript primarily add to a web page?",
@@ -55,7 +60,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
             correctAnswer: 'A'
         },
     ];
-
+}
 
     function showQuestions(questions, quizContainer) {
         
@@ -89,7 +94,6 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 
 
 	quizContainer.innerHTML = output.join('');
-}
 
     function showResults(questions, quizContainer, resultsContainer) {
         var answerContainers = quizContainer.querySelectorAll('.answers');
@@ -122,12 +126,13 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
  
         resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
     }
-    }
+
 
   
-    showQuestions(questions, quizContainer);
+   
 
   
     submitButton.onclick = function () {
         showResults(questions, quizContainer, resultsContainer);
-    }
+    } 
+}

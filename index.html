@@ -8,12 +8,28 @@
     <title>Code Quiz</title>
 </head>
 
-<body>
+<body onload="NextQuestion(0)">
     <main>
-        <div id="quiz"></div>
-        <button id="submit">Get Results</button>
-        <div id="results"></div>
-    </main>
+       
+        <div class="modal-container" id="score-modal">
+
+            <div class="modal-content-container">
+
+                <h1>Congratulations, Quiz Completed.</h1>
+
+                <div class="grade-details">
+                    <p>Attempts : 10</p>
+                    <p>Wrong Answers : <span id="wrong-answers"></span></p>
+                    <p>Right Answers : <span id="right-answers"></span></p>
+                    <p>Grade : <span id="grade-percentage"></span>%</p>
+                    <p ><span id="remarks"></span></p>
+                </div>
+
+                <div class="modal-button-container">
+                    <button onclick="closeScoreModal()">Continue</button>
+                </div>
+
+            </div>
     <script src="asset/script.js"></script>
 </body>
 
