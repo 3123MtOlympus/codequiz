@@ -1,138 +1,42 @@
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
+const startBtn = document.querySelector('button');
 
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
+function onStartBtnClick() {
+    alert();
+    const myQuestions = [{
+        question: "Javascript is a _______ langauge?",
+        answers: {
+        A: "Object-Oriented",
+        B: "Object-Based",
+        C: "Procedural",
+        D: "None",
+    },
+        correctAnswer: "A"
+},
+{
+    question:"Which of the following keywords is used to define a variable in Javascript?",
+    answers: {
+        A: "var",
+        B: "let",
+        C: "Both A and B",
+        D: "None of the Above",
+    },
+    correctAnswer: "C"
+},
 
-    var myQuestions = [
-        {
-            question: "What does JavaScript primarily add to a web page?",
-            answers: {
-                A: 'Style',
-                B: 'Interactivity',
-                C: 'Structure',
-                D: 'Images'
-            },
-            correctAnswer: 'B'
-        },
-        {
-            question: "What is the correct way to declare a variable in JavaScript?",
-            answer: {
-                A: 'let myVar = 10;',
-                B: 'var myVar = 10;',
-                C: 'const myVar = 10;',
-                D: 'all of the above'
-            },
-            
-            correctAnswer: 'D'
-        },
-        {
-            question: "Which of the following is a falsy value in JavaScript?",
-            answer: {
-                A: '0',
-                B: 'false',
-                C: 'undefined',
-                D: 'all of the above'
-            },
-            
-            correctAnswer: 'D'
-        },
-        {
-            question: "What is the purpose of the document.getElementById() method in JavaScript?",
-            answer: {
-                A: 'To get the value of an input element',
-                B: 'To change the page title',
-                C: 'To get an element by its ID',
-                D: 'To add a new HTML element',
-            },
-            
-            correctAnswer: 'C'
-        },
-        {
-            question: "Which operator is used for equality without type coercion in JavaScript?",
-            answer: {
-                A: '===',
-                B: '==',
-                C: '=',
-                D: '!==',
-            },
-            
-            correctAnswer: 'A'
-        },
-    ];
+
+    ]
 }
 
-    function showQuestions(questions, quizContainer) {
-        
-    var output = [];
-	var answers;
+startBtn.addEventListener('click', onStartBtnClick);
 
-	for(var i=0; i<questions.length; i++){
-		
-		
-		answers = [];
+const quizContainer = document.getElementById('quiz-question-container');
+const resultsContainer = document.getElementById('results');
+const submitBtn = document.getElementById('submit');
 
-	
-		for(letter in questions[i].answers){
+function buildQuiz() { }
 
-		
-			answers.push(
-				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ': '
-					+ questions[i].answers[letter]
-				+ '</label>'
-			);
-		}
+function showResults() { }
 
-	
-		output.push(
-			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join('') + '</div>'
-		);
-	}
+buildQuiz();
 
-
-	quizContainer.innerHTML = output.join('');
-
-    function showResults(questions, quizContainer, resultsContainer) {
-        var answerContainers = quizContainer.querySelectorAll('.answers');
-	
-       
-        var userAnswer = '';
-        var numCorrect = 0;
-        
-       
-        for(var i=0; i<questions.length; i++){
-    
-       
-            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-            
-           
-            if(userAnswer===questions[i].correctAnswer){
-                
-                numCorrect++;
-                
-        
-                answerContainers[i].style.color = 'lightgreen';
-            }
-         
-            else{
-              
-                answerContainers[i].style.color = 'red';
-            }
-        }
-    
- 
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    }
-
-
-  
-   
-
-  
-    submitButton.onclick = function () {
-        showResults(questions, quizContainer, resultsContainer);
-    } 
-}
+submitBtn.addEventListener('click', showResults);
