@@ -11,7 +11,27 @@ const quizContainer = document.getElementById('quiz-question-container');
 const resultsContainer = document.getElementById('results');
 const submitBtn = document.getElementById('submit');
 
-function buildQuiz() { }
+function buildQuiz() { 
+    const output =[]:
+
+    myQuestions.forEach(
+        (currentQuestion, questionNumber) => {
+
+            const answers = [];
+
+            for(letter in currentQuestion.answers){
+
+                answers.push(
+                    `<label>
+                    <input type="radio" name="question${questionNumber}" value="${letter}">
+                    ${letter} :
+                    ${currentQuestion.answers[letter]}
+                    </label>`
+                );
+            }
+        }
+    )
+}
 
 function showResults() { }
 
