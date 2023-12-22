@@ -17,7 +17,8 @@ h1 {
     text-shadow: 0 0 3px white;
 }
 
-p {
+p,
+h2 {
     text-shadow: 0 0 3px rgb(231, 183, 61);
 }
 

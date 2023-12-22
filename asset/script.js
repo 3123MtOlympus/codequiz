@@ -5,8 +5,7 @@ let shuffledQuestions, currentQuestion
 const questionElement = document.getElementById("question")
 
 function onStartBtnClick(){
-    alert("Click OK to test your knowledge on javascript!");
-    startBtn.addEventListener("click", onStartBtnClick, startGame);
+    startBtn.addEventListener("click", myQuestions);
 }
 function startGame() {
     startBtn.classList.add("hide");
@@ -32,14 +31,6 @@ function showQuestion(){
         }
           })
 }
-function resetState() {
-    nextBtn.classList.add("hide");
-}
-
-function onSubmitBtnClick() {
-    alert("You've completed your quiz! Let's see your results!");
-    submitBtn.addEventListener('click',onSubmitBtnClick, showResults);
-}
 
 
 
@@ -49,7 +40,7 @@ const submitBtn = document.getElementById('submit');
 
 const myQuestions = [
     {
-    question: "Javascript is a _______ langauge?",
+    question: "Q1. Javascript is a _______ langauge?",
     answers: {
         A: "Object-Oriented",
         B: "Object-Based",
@@ -59,7 +50,7 @@ const myQuestions = [
     correctAnswer: "A"
 },
 {
-    question: "Which of the following keywords is used to define a variable in Javascript?",
+    question: "Q2. Which of the following keywords is used to define a variable in Javascript?",
     answers: {
         A: "var",
         B: "let",
@@ -69,7 +60,7 @@ const myQuestions = [
     correctAnswer: "C"
 },
 {
-    question: "Which of the following methods is used to access HTML elements using Javascript?",
+    question: "Q3. Which of the following methods is used to access HTML elements using Javascript?",
     answers: {
         A: "getElementbyId",
         B: "getElementsByClassName()",
@@ -79,7 +70,7 @@ const myQuestions = [
     correctAnswer: "C"
 },
 {
-    question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
+    question: "Q4. Upon encountering empty statements, what does the Javascript Interpreter do?",
     answers: {
         A: "Throws an error",
         B: "ignores the statements",
@@ -89,7 +80,7 @@ const myQuestions = [
     correctAnswer: "B"
 },
 {
-    question: "Which of the following methods can be used to display data in some form using Javascript?",
+    question: "Q5. Which of the following methods can be used to display data in some form using Javascript?",
     answers: {
         A: "document.write()",
         B: "console.log()",
@@ -156,7 +147,26 @@ function showResults() {
 resultsContainer.innerHTML = `${numCorrect} out of ${myQuestion.length}`;
 }
 
+function resetState() {
+    nextBtn.classList.add("hide");
+}
+
+function onSubmitBtnClick() {
+    alert("You've completed your quiz! Let's see your results!");
+    submitBtn.addEventListener('click',onSubmitBtnClick, showResults);
+}
 
 
 submitBtn.addEventListener('click', showResults);
+var x = setInterval(function(){
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+      
+}
+}, 1000);
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = seconds + "s ";
 
