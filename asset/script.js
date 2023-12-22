@@ -1,18 +1,24 @@
 const startBtn = document.querySelector('button');
 
+
 function onStartBtnClick() {
-    alert("Click OK to begin quiz.");
-    
+    alert("Click OK to begin quiz.");   
+}
+
+function onSubmitBtnClick() {
+    alert("You've completed your quiz! Let's see your results!")
 }
 
 startBtn.addEventListener('click', onStartBtnClick);
+submitBtn.addEventListener('click',onSubmitBtnClick, showResults);
 
 const quizContainer = document.getElementById('quiz-question-container');
 const resultsContainer = document.getElementById('results');
 const submitBtn = document.getElementById('submit');
 
+
 function buildQuiz() { 
-    const output =[]:
+    const output =[];
 
     myQuestions.forEach(
         (currentQuestion, questionNumber) => {
@@ -29,11 +35,38 @@ function buildQuiz() {
                     </label>`
                 );
             }
+            output.push(
+               `<div class="questions"> ${currentQuestion.question} </div>
+               <div class="answers">${answers.join('')} </div>` 
+            );
         }
-    )
+    );
+    quizContainer.innerHTML =output.join('');
 }
 
-function showResults() { }
+function showResults() { 
+    const answerContainers = quizContainer.querySelectorAll('answers');
+
+    let numCorrect = 0;
+
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+        const answerContainer = answerContainers[questionNumber];
+        const selector = `input[name=question${questionNumber}]: checked`;
+        const userAnswer = (answerContainer.querySelector(selector)||{}).value;
+
+        if(userAnswer === currentQuestion.correctAnswer){
+            numCorrect++;
+
+            answerContainers[questionNumber].style.color = 'lightgreen';
+        } else{
+            answerContainers[questionNumber].style.color = 'red';
+        }
+
+});
+
+resultsContainer.innerHTML = `${numCorrect} out of ${myQuestion.length}`;
+}
 
 buildQuiz();
 
