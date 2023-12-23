@@ -3,26 +3,27 @@ const nextBtn = document.getElementById("next-btn")
 const questionContainerElement = document.getElementById("question-container")
 let shuffledQuestions, currentQuestion
 const questionElement = document.getElementById("question")
+var distance = 60;
 
 function onStartBtnClick(){
-    startBtn.addEventListener("click", myQuestions);
+   
 }
 function startGame() {
     startBtn.classList.add("hide");
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestion = 0;
     questionContainerElement.classList.remove("hide");
-
+showQuestion();
 }
 
 function setNextQuestion() {
     resetState();
-    showQuestion(shuffledQuestions[currentQuestion]);
+    showQuestion([currentQuestion]);
 }
 
 function showQuestion(){
-    questionElement.innerText = question.question;
-    question.answers.forEach(answer => {
+    questionElement.innerText = questions[currentQuestion].question;
+    questions[currentQuestion].answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerText = answer.text;
         button.classList.add("btn");
@@ -38,58 +39,33 @@ const quizContainer = document.getElementById('quiz-question-container');
 const resultsContainer = document.getElementById('results');
 const submitBtn = document.getElementById('submit');
 
-const myQuestions = [
+const questions = [
     {
-    question: "Q1. Javascript is a _______ langauge?",
-    answers: {
-        A: "Object-Oriented",
-        B: "Object-Based",
-        C: "Procedural",
-        D: "None",
-    },
-    correctAnswer: "A"
+    question: "Javascript is a _______ langauge?",
+    answers: ["Object-Oriented", "Object-Based", "Procedural", "None"]
+    
 },
 {
-    question: "Q2. Which of the following keywords is used to define a variable in Javascript?",
-    answers: {
-        A: "var",
-        B: "let",
-        C: "Both A and B",
-        D: "None of the Above",
-    },
-    correctAnswer: "C"
+    question: "Which of the following keywords is used to define a variable in Javascript?",
+    answers: ["var","let", "Both A and B", "None of the Above"]
+        
 },
 {
-    question: "Q3. Which of the following methods is used to access HTML elements using Javascript?",
-    answers: {
-        A: "getElementbyId",
-        B: "getElementsByClassName()",
-        C: "Both A and B",
-        D: "None of the Above",
-    },
-    correctAnswer: "C"
-},
-{
-    question: "Q4. Upon encountering empty statements, what does the Javascript Interpreter do?",
-    answers: {
-        A: "Throws an error",
-        B: "ignores the statements",
-        C: "Giving a warning",
-        D: "None of the Above",
-    },
-    correctAnswer: "B"
-},
-{
-    question: "Q5. Which of the following methods can be used to display data in some form using Javascript?",
-    answers: {
-        A: "document.write()",
-        B: "console.log()",
-        C: "window.alert()",
-        D: "All of the above",
-    },
-    correctAnswer: "D"
+    question: "Which of the following methods is used to access HTML elements using Javascript?",
+    answers:
+       ["getElementbyId", "getElementsByClassName()", "Both A and B", "None of the Above"]
 
-}
+},
+{
+    question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
+    answers: ["Throws an error", "ignores the statements", "Giving a warning", "None of the Above"]
+
+},
+{
+    question: "Which of the following methods can be used to display data in some form using Javascript?",
+    answers: ["document.write()", "console.log()", "window.alert()", "All of the above"]
+},
+
 
 ];
 
@@ -97,7 +73,7 @@ function buildQuiz() {
     const output =[];
 
     myQuestions.forEach(
-        (currentQuestion, questionNumber) => {
+      (currentQuestion, questionNumber) => {
 
             const answers = [];
 
@@ -112,7 +88,7 @@ function buildQuiz() {
                 );
             }
             output.push(
-               `<div class="questions"> ${currentQuestion.question} </div>
+              `<div class="questions"> ${currentQuestion.question} </div>
                <div class="answers">${answers.join('')} </div>` 
             );
         }
@@ -120,7 +96,7 @@ function buildQuiz() {
     quizContainer.innerHTML =output.join('');
 }
 
-buildQuiz();
+//buildQuiz();
 
 
 function showResults() { 
@@ -165,8 +141,9 @@ var x = setInterval(function(){
       
 }
 }, 1000);
-var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+var seconds = 60;
 
   // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = seconds + "s ";
+  document.getElementById("timer").innerHTML = seconds + "s ";
 
+  startBtn.addEventListener("click", startGame);
