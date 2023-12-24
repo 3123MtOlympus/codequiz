@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +8,52 @@
     <title>Javascript Quiz</title>
 
 </head>
+
 <body>
     <header>
         <h1>Javascript Code Quiz</h1>
         <h2>Test Your Knowledge</h2>
-        <p id="timer"></p>
+
         <nav>
-                <a href="#highscore">View High Scores</a>
+            <!--<a href="#highscore">View High Scores</a>-->
+           
         </nav>
     </header>
     <div>
         <button id="startQuiz">START</button>
     </div>
     <main>
-        
+
         <div id="question-container" class="hide">
-            
-            
-    <div id="question"></div>
+            <p id="timer"></p>
+
+            <div id="question"></div>
+            <div id="answers"></div>
             <div id="results"></div>
         </div>
-    
-        
+
+
     </main>
-   <section>
-    <button id="next-btn" class="next-btn btn hide">Next</button>
-            <button id="submit">Submit Quiz</button>
-   </section>
+    <section>
+
+        <button id="submit">Submit</button>
+        <button class="HS" onclick="High_Score_Up">View High Score</button>
+        <p id="High_Score_Down">
+            <div id="myhighscore"></div>
+        </p>
+    </section>
 
     <script src="asset/script.js"></script>
 </body>
 
 
 </html>
+
+
+<!-- 
+    TODO:
+    1. Timer that subtract time after incorrect selection
+    2. Collect High score and initals in localstorage
+    3.
+
+-->

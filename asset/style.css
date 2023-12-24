@@ -39,10 +39,15 @@ button {
     background-color: red;
 }
 
+.HS{
+    background-color: blue;
+    
+}
+
 button:hover {
     color: white;
     text-shadow: 1px 1px black;
-    background-color: red;
+    background-color: rgb(20, 38, 32);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: large;
 

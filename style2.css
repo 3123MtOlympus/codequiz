@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: rgb(121, 207, 143);
+}
+
+::selection{
+    color: bisque;
+    background-color: rgb(41, 37, 37);
+}
+
+.start_btn,
+.info_box,
+.quiz_box,
+.result_box{
+position: absolute;
+top:50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
