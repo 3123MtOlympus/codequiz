@@ -1,5 +1,6 @@
 let questions = [
     {
+        numb: 1,
         question: "Javascript is a _______ langauge.",
         answer: "Object-Oriented",
         options: [
@@ -11,6 +12,7 @@ let questions = [
 
     },
     {
+        numb: 2,
         question: "Which of the following keywords is used to define a variable in Javascript?",
         answer: "Both A and B",
         options: [
@@ -22,9 +24,10 @@ let questions = [
 
     },
     {
+        numb: 3,
         question: "Which of the following methods is used to access HTML elements using Javascript?",
         answer: "Both A and B",
-        options:[
+        options: [
             "getElementbyId",
             "getElementsByClassName()",
             "Both A and B",
@@ -33,22 +36,24 @@ let questions = [
 
     },
     {
+        numb: 4,
         question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
-       answer:  "ignores the statements",
+        answer: "ignores the statements",
         options: [
-            "Throws an error", 
-            "ignores the statements", 
-            "Giving a warning", 
+            "Throws an error",
+            "ignores the statements",
+            "Giving a warning",
             "None of the Above"]
 
     },
     {
+        numb: 5,
         question: "Which of the following methods can be used to display data in some form using Javascript?",
-       answer: "All of the above",
+        answer: "All of the above",
         options: [
-            "document.write()", 
-            "console.log()", 
-            "window.alert()", 
+            "document.write()",
+            "console.log()",
+            "window.alert()",
             "All of the above"]
     },
 ]
