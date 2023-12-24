@@ -45,7 +45,7 @@ restart_quiz.onclick()=> {
 }
 
 // click quitQuiz
-quit_quiz.onclick() => {
+quit_quiz.onclick()=> {
     window.location.reload()
 }
 
@@ -53,8 +53,8 @@ const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
 // click nextBtn
-next_btn.onclick() => {
-    if (que_count < questionContainerElement.length - 1){
+next_btn.onclick()=> {
+    if (que_count < questionContainerElement.length - 1) {
         que_count++;
         que_num++;
         showQuestion(que_count);
@@ -72,3 +72,22 @@ next_btn.onclick() => {
         showResults();
     }
 }
+
+// get questions
+
+let que_tag = '<span>' + questions[index].numb + ", " + questions[index].question + "</span>";
+let option_tag = '<div class"options"><span>' + questions[index].options[0] + '</span></div>' 
++ '<div class="option"><span>' + questions[index].options[1] + '</span></div>' 
++ '<div class="option"><span>' + questions[index].options[2] + '</span></div>' 
++ '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
+que_text.innerHTML = que_tag;
+option_list.innerHTML = option_tag;
+
+const option = option_list.querySelectorAll(".option");
+
+// set onclick attr
+
+for(i-0; i < option_length; i++){
+    option[i].setAttribute("onclick", "optionSelected(this)");
+}
+
