@@ -63,6 +63,23 @@ const questions = [
     timer = setInterval(updateTimer, 1000);
   }
   
+  function showQuestion() {
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const timeElement = document.getElementById("time");
+  
+    questionElement.textContent = questions[currentQuestion].question;
+  
+    optionsElement.innerHTML = "";
+    for (let option of questions[currentQuestion].options) {
+      const button = document.createElement("button");
+      button.textContent = option;
+      button.onclick = () => checkAnswer(option);
+      optionsElement.appendChild(button);
+    }
+  
+    timeElement.textContent = timeLeft;
+
   function checkAnswer(selectedAnswer) {
     clearInterval(timer);
     if (selectedAnswer === questions[currentQuestion].correctAnswer) {
@@ -102,11 +119,11 @@ const questions = [
   }
   
   function resetTimer() {
-    timeLeft = 10; // Reset timer for the next question
+    timeLeft = 10;
   }
   
   function showResult() {
-    // ... (previous code)
+   
   }
   
   function nextQuestion() {
@@ -117,5 +134,5 @@ const questions = [
     } else {
       showResult();
     }
+}
   }
-  
