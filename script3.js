@@ -1,7 +1,7 @@
 const questions = [
     {
         question: "Javascript is a _______ langauge.",
-        answer: "Object-Oriented",
+        correctAnswer: "Object-Oriented",
         options: [
             "Object-Oriented",
             "Object-Based",
@@ -12,7 +12,7 @@ const questions = [
     },
     {
         question: "Which of the following keywords is used to define a variable in Javascript?",
-        answer: "Both A and B",
+        correctAnswer: "Both A and B",
         options: [
             "var",
             "let",
@@ -23,7 +23,7 @@ const questions = [
     },
     {
         question: "Which of the following methods is used to access HTML elements using Javascript?",
-        answer: "Both A and B",
+        correctAnswer: "Both A and B",
         options: [
             "getElementbyId",
             "getElementsByClassName()",
@@ -34,7 +34,7 @@ const questions = [
     },
     {
         question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
-        answer: "ignores the statements",
+        correctAnswer: "ignores the statements",
         options: [
             "Throws an error",
             "ignores the statements",
@@ -44,7 +44,7 @@ const questions = [
     },
     {
         question: "Which of the following methods can be used to display data in some form using Javascript?",
-        answer: "All of the above",
+        correctAnswer: "All of the above",
         options: [
             "document.write()",
             "console.log()",
@@ -56,7 +56,7 @@ const questions = [
   let currentQuestion = 0;
   let score = 0;
   let timeLeft = 15;
-  let timer;
+  let updateTimer;
   
   function startQuiz() {
     showQuestion();
@@ -80,6 +80,30 @@ const questions = [
   
     timeElement.textContent = timeLeft;
 
+    function updateTimer() {
+        const timeElement = document.getElementById("time");
+      
+        timeLeft--;
+      
+        if (timeLeft >= 0) {
+          timeElement.textContent = timeLeft;
+        } else {
+
+          clearInterval(timer);
+          currentQuestion++;
+      
+          if (currentQuestion < questions.length) {
+         
+            resetTimer();
+            showQuestion();
+            timer = setInterval(updateTimer, 1000);
+          } else {
+            
+            showResult();
+          }
+        }
+      }
+
   function checkAnswer(selectedAnswer) {
     clearInterval(timer);
     if (selectedAnswer === questions[currentQuestion].correctAnswer) {
@@ -100,7 +124,7 @@ const questions = [
       } else {
         showResult();
       }
-    }, 2000); // Delay of 2 seconds (adjust as needed)
+    }, 2000); 
   }
   
   function showFeedback(selectedAnswer) {
@@ -126,6 +150,8 @@ const questions = [
    
   }
   
+  let next = document.getElementsByClassName('.next-btn');
+
   function nextQuestion() {
     if (currentQuestion < questions.length) {
       resetTimer();
@@ -136,3 +162,33 @@ const questions = [
     }
 }
   }
+
+  function showResult() {
+    const quizBox = document.querySelector(".quiz-box");
+    const resultBox = document.getElementById("result-box");
+    const scoreElement = document.getElementById("score");
+    const scoreList = document.getElementById("score-list");
+  
+    quizBox.style.display = "none";
+    resultBox.style.display = "block";
+  
+    scoreElement.textContent = `Your score: ${score} out of ${questions.length}`;
+  
+    // Clear existing list items
+    scoreList.innerHTML = "";
+  
+    // Show individual question results
+    for (let i = 0; i < questions.length; i++) {
+      const listItem = document.createElement("li");
+      listItem.textContent = `Question ${i + 1}: ${i === questions.length - 1 ? "Correct" : "Incorrect"}`;
+      scoreList.appendChild(listItem);
+    }
+  
+    // Add a summary for the total score
+    const summaryItem = document.createElement("li");
+    summaryItem.textContent = `Total Score: ${score} out of ${questions.length}`;
+    summaryItem.style.fontWeight = 'bold';
+    scoreList.appendChild(summaryItem);
+  }
+  
+  
